@@ -18,9 +18,12 @@ DateModified DATETIME not null
 create table Room
 (
 RoomId int PRIMARY key,
+CatagoryId int not null,
+WaitList INT not null,
 [Name] NVARCHAR(50) not null,
 Topic NVARCHAR(50),
-DateModified DATETIME not null
+DateModified DATETIME not null,
+FOREIGN KEY (CatagoryId) REFERENCES Catagory(CatagoryId)
 );
 
 create table [Message]
@@ -38,26 +41,6 @@ UserId int not null,
 CatagoryId int not null,
 DateModified DATETIME not null,
 FOREIGN KEY (UserId) REFERENCES [User](UserId),
-FOREIGN KEY (CatagoryId) REFERENCES Catagory(CatagoryId)
-);
-
-create table CatagoryRoomJunction
-(
-CatagoryRoomId int PRIMARY key,
-RoomId int not null,
-CatagoryId int not null,
-DateModified DATETIME not null,
-FOREIGN KEY (RoomId) REFERENCES Room(RoomId),
-FOREIGN KEY (CatagoryId) REFERENCES Catagory(CatagoryId)
-);
-
-create table WaitList
-(
-WaitListId int PRIMARY key,
-RoomId int not null,
-CatagoryId int not null,
-DateModified DATETIME not null,
-FOREIGN KEY (RoomId) REFERENCES Room(RoomId),
 FOREIGN KEY (CatagoryId) REFERENCES Catagory(CatagoryId)
 );
 

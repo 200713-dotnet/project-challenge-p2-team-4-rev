@@ -7,18 +7,17 @@ namespace Perspective.Storing
     {
         public Room()
         {
-            CatagoryRoomJunction = new HashSet<CatagoryRoomJunction>();
             MessageJunction = new HashSet<MessageJunction>();
-            WaitList = new HashSet<WaitList>();
         }
 
         public int RoomId { get; set; }
+        public int CatagoryId { get; set; }
+        public int WaitList { get; set; }
         public string Name { get; set; }
         public string Topic { get; set; }
         public DateTime DateModified { get; set; }
 
-        public virtual ICollection<CatagoryRoomJunction> CatagoryRoomJunction { get; set; }
+        public virtual Catagory Catagory { get; set; }
         public virtual ICollection<MessageJunction> MessageJunction { get; set; }
-        public virtual ICollection<WaitList> WaitList { get; set; }
     }
 }

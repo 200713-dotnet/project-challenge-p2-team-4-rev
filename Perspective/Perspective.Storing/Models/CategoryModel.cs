@@ -4,10 +4,10 @@ namespace Perspective.Storing
 {
     public class CategoryModel: AModel
     {
-        string Description{get;set;}
-        List<RoomModel> Rooms {get;set;}
-        List<UserModel> WaitList {get;set;}
-        List<string> Topics{get;set;}
+        public string Description{get;set;}
+        public List<RoomModel> Rooms {get;set;}
+        public RoomModel WaitList {get;set;}
+        public List<string> Topics{get;set;}
         
     }
 }

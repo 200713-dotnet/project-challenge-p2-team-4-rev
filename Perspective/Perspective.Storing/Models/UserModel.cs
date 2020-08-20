@@ -5,8 +5,8 @@ namespace Perspective.Storing
     public class UserModel : AModel
     {
         public string Password{get;set;}
-        List<RoomModel> Rooms{get;set;}
-        List<CategoryModel> Catagories{get;set;}
+        public List<RoomModel> Rooms{get;set;}
+        public List<CategoryModel> Catagories{get;set;}
         
     }
 }
