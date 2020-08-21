@@ -1,6 +1,6 @@
 using System;
 
-namespace Perspective.Domain
+namespace Perspective.Service
 {
     public class WeatherForecast
     {

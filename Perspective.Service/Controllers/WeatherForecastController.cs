@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Perspective.Domain.Controllers
+namespace Perspective.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
