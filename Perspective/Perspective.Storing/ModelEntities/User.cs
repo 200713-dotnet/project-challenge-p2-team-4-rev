@@ -9,6 +9,7 @@ namespace Perspective.Storing
         {
             CatagoryUserJunction = new HashSet<CatagoryUserJunction>();
             MessageJunction = new HashSet<MessageJunction>();
+            UserRoomJunction = new HashSet<UserRoomJunction>();
         }
 
         public int UserId { get; set; }
@@ -18,5 +19,6 @@ namespace Perspective.Storing
 
         public virtual ICollection<CatagoryUserJunction> CatagoryUserJunction { get; set; }
         public virtual ICollection<MessageJunction> MessageJunction { get; set; }
+        public virtual ICollection<UserRoomJunction> UserRoomJunction { get; set; }
     }
 }

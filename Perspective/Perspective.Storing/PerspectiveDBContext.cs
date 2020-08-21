@@ -22,12 +22,12 @@ namespace Perspective.Storing
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<TopicList> TopicList { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserRoomJunction> UserRoomJunction { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("server=perspectivedb.database.windows.net;database=PerspectiveDB;user id=sqladmin;password=Password1234");
             }
         }
@@ -159,6 +159,28 @@ namespace Perspective.Storing
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<UserRoomJunction>(entity =>
+            {
+                entity.HasKey(e => e.UserRoomId)
+                    .HasName("PK__UserRoom__152B95B6BCA32974");
+
+                entity.Property(e => e.UserRoomId).ValueGeneratedNever();
+
+                entity.Property(e => e.DateModified).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Room)
+                    .WithMany(p => p.UserRoomJunction)
+                    .HasForeignKey(d => d.RoomId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__UserRoomJ__RoomI__71D1E811");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserRoomJunction)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__UserRoomJ__UserI__70DDC3D8");
             });
 
             OnModelCreatingPartial(modelBuilder);

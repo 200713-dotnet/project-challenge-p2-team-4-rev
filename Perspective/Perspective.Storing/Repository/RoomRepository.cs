@@ -8,6 +8,7 @@ namespace Perspective.Storing
     {
         MessageRepository MR = new MessageRepository();
         CatagoryRepository CR = new CatagoryRepository();
+        UserRepository UR = new UserRepository();
         public RoomModel Conversion(Room room,PerspectiveDBContext pc)
         {
             RoomModel temp = new RoomModel();
@@ -16,6 +17,7 @@ namespace Perspective.Storing
             temp.Id = room.RoomId;
             temp.DateModified = room.DateModified;
             temp.Messages = MR.GetRoom(pc,temp.Name);
+            temp.Users = UR.GetUserData(pc,temp.Name);
             return temp;
 
         }
@@ -34,11 +36,38 @@ namespace Perspective.Storing
             return temp;
 
         }
+        public List<RoomModel> GetUser(PerspectiveDBContext pc,string username)
+        {
+            User usr = UR.GetUser(pc,username);
+            List<RoomModel> temp = new List<RoomModel>();
+            List<Room> temproom = new List<Room>();
+            var tempList = pc.UserRoomJunction.Where(id => id.UserId == usr.UserId).ToList();
+            foreach(var urj in temproom)
+            {
+                temproom.Add(GetRoom(pc,urj.RoomId));
+            }
+            foreach(Room r in temproom)
+            {
+                RoomModel tempModel = new RoomModel();
+                tempModel = Conversion(r,pc);
+                temp.Add(tempModel);
+            }
+            return temp;
+
+        }
         public RoomModel GetWaitList(PerspectiveDBContext pc, string catagoryname)
         {
              Catagory cat = CR.GetCatagory(pc,catagoryname);
              var query = pc.Room.FirstOrDefault(waitlist => waitlist.WaitList == 1);
              return Conversion(query,pc);
+        }
+        public Room GetRoom(PerspectiveDBContext pc,int id)
+        {
+            return pc.Room.FirstOrDefault(i => i.RoomId == id);
+        }
+        public Room GetRoom(PerspectiveDBContext pc,string name)
+        {
+            return pc.Room.FirstOrDefault(i => i.Name == name);
         }
     }
 }

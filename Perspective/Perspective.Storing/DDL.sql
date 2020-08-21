@@ -43,7 +43,15 @@ DateModified DATETIME not null,
 FOREIGN KEY (UserId) REFERENCES [User](UserId),
 FOREIGN KEY (CatagoryId) REFERENCES Catagory(CatagoryId)
 );
-
+create table UserRoomJunction
+(
+UserRoomId int PRIMARY key,
+UserId int not null,
+RoomId int not null,
+DateModified DATETIME not null,
+FOREIGN KEY (UserId) REFERENCES [User](UserId),
+FOREIGN KEY (RoomId) REFERENCES Room(RoomId)
+);
 create table MessageJunction
 (
 MessageJunctionId int PRIMARY key,

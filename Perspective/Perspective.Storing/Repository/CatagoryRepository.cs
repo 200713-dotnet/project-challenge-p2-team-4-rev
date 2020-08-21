@@ -6,10 +6,12 @@ namespace Perspective.Storing
     public class CatagoryRepository
     {
         RoomRepository RR = new RoomRepository();
+        UserRepository UR = new UserRepository();
         public CategoryModel Conversion(PerspectiveDBContext pc,Catagory cat)
         {
             CategoryModel temp = new CategoryModel();
             temp.Name = cat.Name;
+            temp.Description = cat.Description;
             temp.Id = cat.CatagoryId;
             temp.DateModified = cat.DateModified;
             temp.Rooms = RR.GetCategory(pc,temp.Name);
@@ -21,6 +23,12 @@ namespace Perspective.Storing
         public Catagory GetCatagory(PerspectiveDBContext pc,string name)
         {
             return pc.Catagory.FirstOrDefault(n => n.Name ==name);
+                
+            
+        }
+        public Catagory GetCatagory(PerspectiveDBContext pc,int id)
+        {
+            return pc.Catagory.FirstOrDefault(n => n.CatagoryId ==id);
                 
             
         }
@@ -42,6 +50,25 @@ namespace Perspective.Storing
                 tempList.Add(Conversion(pc,c));
             }
             return tempList;
+        }
+        public List<CategoryModel> GetUser(PerspectiveDBContext pc,string username)
+        {
+            User usr = UR.GetUser(pc,username);
+            List<CategoryModel> temp = new List<CategoryModel>();
+            List<Catagory> tempcat = new List<Catagory>();
+            var tempList = pc.CatagoryUserJunction.Where(id => id.UserId == usr.UserId).ToList();
+            foreach(var ucj in tempList)
+            {
+                tempcat.Add(GetCatagory(pc,ucj.CatagoryId));
+            }
+            foreach(Catagory c in tempcat)
+            {
+                CategoryModel tempModel = new CategoryModel();
+                tempModel = Conversion(pc,c);
+                temp.Add(tempModel);
+            }
+            return temp;
+
         }
     }
 }
