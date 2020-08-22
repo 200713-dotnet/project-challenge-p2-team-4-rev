@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Chatroom";
+    Layout = "_ChatroomLayout";
+}
+
+
+  <label for="chatbox">ChatRoomName</label>
+  <br>
+  <textarea id="chatbox" name="chatbox" rows="4" cols="50">
+    ChatMessages
+  </textarea>
+
+@using(Html.BeginForm("Index","Chatroom", null, FormMethod.Post))
+{
+  <textarea id="messsage" name="message" rows="1" cols="50">
+  </textarea>
+  <input type="submit" value="Send">
+}

@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Account Creation";
+    Layout = "_AccountCreationLayout";
+}
+
+@using(Html.BeginForm("Index","Profile", null, FormMethod.Post))
+{
+  <div class="container">
+    <label for="psw"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+    <button type="submit">Login</button>
+  </div>
+}
