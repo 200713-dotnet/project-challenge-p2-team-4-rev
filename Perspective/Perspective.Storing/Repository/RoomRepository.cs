@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -55,6 +56,16 @@ namespace Perspective.Storing
             return temp;
 
         }
+
+        public void AddUser(PerspectiveDBContext pc, string UserName,string RoomName)
+        {
+            UserRoomJunction temp = new UserRoomJunction();
+            temp.Room = GetRoom(pc,RoomName);
+            temp.User = UR.GetUser(pc,UserName);
+            pc.UserRoomJunction.Add(temp);
+            pc.SaveChanges();
+        }
+
         public RoomModel GetWaitList(PerspectiveDBContext pc, string catagoryname)
         {
              Catagory cat = CR.GetCatagory(pc,catagoryname);
