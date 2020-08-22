@@ -9,10 +9,12 @@ namespace Perspective.Storing
     [Route("/api/{Controller}")]
     public class UserController : ControllerBase 
     {
+        private readonly PerspectiveDBContext pc;
+        
         [HttpGet]
         public IActionResult GetAll()
         {
-           return Ok("");
+           return Ok();
         }
     }
 }

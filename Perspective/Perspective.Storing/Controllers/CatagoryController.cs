@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Perspective.Storing
 {
     [ApiController]
-    [Route("/api/{Controller}")]
+    [Route("/api/{Controller}/{action}")]
     public class CatagoryController : ControllerBase 
     {
         private readonly PerspectiveDBContext pc;
@@ -31,10 +31,12 @@ namespace Perspective.Storing
            CR.Add(pc,name,description);
            return Ok();
         }
+        [HttpPost]
         public IActionResult AddUser(string username,string catagoryname)
         {
            CR.AddUser(pc,username,catagoryname);
            return Ok();
         }
+        
     }
 }

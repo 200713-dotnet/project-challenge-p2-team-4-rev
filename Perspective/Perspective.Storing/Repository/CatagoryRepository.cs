@@ -89,5 +89,15 @@ namespace Perspective.Storing
             return temp;
 
         }
+        public string GetTopic(PerspectiveDBContext pc,string CatagoryName)
+        {
+            Catagory cat = GetCatagory(pc,CatagoryName);
+            var query = pc.TopicList.Where(id => id.CatagoryId == cat.CatagoryId).ToArray();
+            Random Rand = new Random();
+            var result = query[Rand.Next(query.Length-1)];
+            return result.Name;
+
+
+        }
     }
 }

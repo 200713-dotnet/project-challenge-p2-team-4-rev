@@ -69,7 +69,6 @@ namespace Perspective.Storing
         {
             return pc.Room.FirstOrDefault(i => i.Name == name);
         }
-        //FIX THIS METHOD
         public List<MessageModel> GetMessages(PerspectiveDBContext pc, string roomname)
         {
              Room rm = GetRoom(pc,roomname);
@@ -79,6 +78,14 @@ namespace Perspective.Storing
              tempList.Add(MR.Conversion(pc,m.Name));
              }
              return tempList;
+        }
+        public void add(PerspectiveDBContext pc,string roomName,string userName, string content)
+        {
+            Message msg = new Message();
+            msg.Room = GetRoom(pc,roomName);
+            msg.User = UR.GetUser(pc,userName);
+            msg.Content = content;
+            pc.Message.Add(msg);
         }
     }
 }
