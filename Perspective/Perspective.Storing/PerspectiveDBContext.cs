@@ -18,7 +18,6 @@ namespace Perspective.Storing
         public virtual DbSet<Catagory> Catagory { get; set; }
         public virtual DbSet<CatagoryUserJunction> CatagoryUserJunction { get; set; }
         public virtual DbSet<Message> Message { get; set; }
-        public virtual DbSet<MessageJunction> MessageJunction { get; set; }
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<TopicList> TopicList { get; set; }
         public virtual DbSet<User> User { get; set; }
@@ -28,6 +27,7 @@ namespace Perspective.Storing
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("server=perspectivedb.database.windows.net;database=PerspectiveDB;user id=sqladmin;password=Password1234");
             }
         }
@@ -83,31 +83,18 @@ namespace Perspective.Storing
                 entity.Property(e => e.DateModified).HasColumnType("datetime");
 
                 entity.Property(e => e.Name).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<MessageJunction>(entity =>
-            {
-                entity.Property(e => e.MessageJunctionId).ValueGeneratedNever();
-
-                entity.Property(e => e.DateModified).HasColumnType("datetime");
-
-                entity.HasOne(d => d.Message)
-                    .WithMany(p => p.MessageJunction)
-                    .HasForeignKey(d => d.MessageId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__MessageJu__Messa__6B24EA82");
 
                 entity.HasOne(d => d.Room)
-                    .WithMany(p => p.MessageJunction)
+                    .WithMany(p => p.Message)
                     .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__MessageJu__RoomI__693CA210");
+                    .HasConstraintName("FK__Message__RoomId__74AE54BC");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.MessageJunction)
+                    .WithMany(p => p.Message)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__MessageJu__UserI__6A30C649");
+                    .HasConstraintName("FK__Message__UserId__75A278F5");
             });
 
             modelBuilder.Entity<Room>(entity =>

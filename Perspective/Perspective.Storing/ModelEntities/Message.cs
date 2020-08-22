@@ -5,16 +5,14 @@ namespace Perspective.Storing
 {
     public partial class Message
     {
-        public Message()
-        {
-            MessageJunction = new HashSet<MessageJunction>();
-        }
-
         public int MessageId { get; set; }
+        public int UserId { get; set; }
+        public int RoomId { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }
         public DateTime DateModified { get; set; }
 
-        public virtual ICollection<MessageJunction> MessageJunction { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual User User { get; set; }
     }
 }

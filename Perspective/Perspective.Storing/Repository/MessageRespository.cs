@@ -5,8 +5,9 @@ namespace Perspective.Storing
 {
     public class MessageRepository
     {
-        public MessageModel Conversion(Message msg)
+        public MessageModel Conversion(PerspectiveDBContext pc, string messagename)
         {
+            Message msg = new Message();
             MessageModel temp = new MessageModel();
             temp.content = msg.Content;
             temp.Name = msg.Name;
@@ -21,7 +22,7 @@ namespace Perspective.Storing
             foreach(Message m in pc.Message.ToList().Where(name => name.Name == roomname))
             {
                 MessageModel tempModel = new MessageModel();
-                tempModel = Conversion(m);
+                tempModel = Conversion(pc,m.Name);
                 temp.Add(tempModel);
             }
             return temp;

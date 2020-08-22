@@ -69,5 +69,16 @@ namespace Perspective.Storing
         {
             return pc.Room.FirstOrDefault(i => i.Name == name);
         }
+        //FIX THIS METHOD
+        public List<MessageModel> GetMessages(PerspectiveDBContext pc, string roomname)
+        {
+             Room rm = GetRoom(pc,roomname);
+             var query = pc.Message.Where(id => id.RoomId == rm.RoomId).ToList();
+             var tempList = new List<MessageModel>();
+             foreach(var m in query){
+             tempList.Add(MR.Conversion(pc,m.Name));
+             }
+             return tempList;
+        }
     }
 }

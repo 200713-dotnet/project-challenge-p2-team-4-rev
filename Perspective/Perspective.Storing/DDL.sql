@@ -25,13 +25,16 @@ Topic NVARCHAR(50),
 DateModified DATETIME not null,
 FOREIGN KEY (CatagoryId) REFERENCES Catagory(CatagoryId)
 );
-
 create table [Message]
 (
 MessageId int PRIMARY key,
+UserId int not null,
+RoomId int not null,
 [Name] NVARCHAR(50),
 content NVARCHAR(250) not null,
-DateModified DATETIME not null
+DateModified DATETIME not null,
+FOREIGN KEY (RoomId) REFERENCES Room(RoomId),
+FOREIGN KEY (UserId) REFERENCES [User](UserId)
 );
 
 create table CatagoryUserJunction
@@ -52,18 +55,6 @@ DateModified DATETIME not null,
 FOREIGN KEY (UserId) REFERENCES [User](UserId),
 FOREIGN KEY (RoomId) REFERENCES Room(RoomId)
 );
-create table MessageJunction
-(
-MessageJunctionId int PRIMARY key,
-RoomId int not null,
-UserId int not null,
-MessageId int not null,
-DateModified DATETIME not null,
-FOREIGN KEY (RoomId) REFERENCES Room(RoomId),
-FOREIGN KEY (UserId) REFERENCES [User](UserId),
-FOREIGN KEY (MessageId) REFERENCES [Message](MessageId)
-);
-
 create table TopicList
 (
     TopicListId int PRIMARY KEY,

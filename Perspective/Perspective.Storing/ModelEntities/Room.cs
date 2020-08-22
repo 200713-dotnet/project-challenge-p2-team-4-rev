@@ -7,7 +7,7 @@ namespace Perspective.Storing
     {
         public Room()
         {
-            MessageJunction = new HashSet<MessageJunction>();
+            Message = new HashSet<Message>();
             UserRoomJunction = new HashSet<UserRoomJunction>();
         }
 
@@ -19,7 +19,7 @@ namespace Perspective.Storing
         public DateTime DateModified { get; set; }
 
         public virtual Catagory Catagory { get; set; }
-        public virtual ICollection<MessageJunction> MessageJunction { get; set; }
+        public virtual ICollection<Message> Message { get; set; }
         public virtual ICollection<UserRoomJunction> UserRoomJunction { get; set; }
     }
 }

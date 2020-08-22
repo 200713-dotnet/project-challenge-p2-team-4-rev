@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,9 +24,27 @@ namespace Perspective.Storing
         public Catagory GetCatagory(PerspectiveDBContext pc,string name)
         {
             return pc.Catagory.FirstOrDefault(n => n.Name ==name);
-                
-            
         }
+
+        public void Add(PerspectiveDBContext pc, string name, string description)
+        {
+            Catagory cat = new Catagory();
+            cat.DateModified = DateTime.Now;
+            cat.Name = name;
+            cat.Description = description;
+            pc.Catagory.Add(cat);
+            pc.SaveChanges();
+        }
+
+        public void AddUser(PerspectiveDBContext pc, string UserName,string CatagoryName)
+        {
+            CatagoryUserJunction temp = new CatagoryUserJunction();
+            temp.Catagory = GetCatagory(pc,CatagoryName);
+            temp.User = UR.GetUser(pc,UserName);
+            pc.CatagoryUserJunction.Add(temp);
+            pc.SaveChanges();
+        }
+
         public Catagory GetCatagory(PerspectiveDBContext pc,int id)
         {
             return pc.Catagory.FirstOrDefault(n => n.CatagoryId ==id);

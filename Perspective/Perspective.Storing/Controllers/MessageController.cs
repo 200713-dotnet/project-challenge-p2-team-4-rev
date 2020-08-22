@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -9,14 +10,9 @@ namespace Perspective.Storing
     public class MessageController : ControllerBase 
     {
         [HttpGet]
-        public async Task<IActionResult> GetALL()
+        public IActionResult GetAll()
         {
-            var mm = new MessageModel();
-            HttpClient client = new HttpClient();
-            var response =await client.GetAsync("http://localhost:5000/api/Message");
-            var mm2 = response.Content;
-
-            return Ok(mm);
+           return Ok("");
         }
     }
 }
