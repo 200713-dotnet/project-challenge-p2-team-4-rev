@@ -3,10 +3,15 @@
     Layout = "_ChatroomLayout";
 }
 
-<form action="">
-  <input type="text">
-</form>
 
-<form action="">
-  <input type="text"><button>Send</button>
-</form>
+  <label for="chatbox">ChatRoomName</label>
+  <textarea id="chatbox" name="chatbox" rows="4" cols="50">
+    ChatMessages
+  </textarea>
+
+@using(Html.BeginForm("Index","Chatroom", null, FormMethod.Post))
+{
+  <textarea id="messsage" name="message" rows="1" cols="50">
+  </textarea>
+  <input type="submit" value="Send">
+}

@@ -2,6 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
+@using(Html.BeginForm("Index","Login",null,FormMethod.Post))
+{
+  <button type="submit">Login</button>
+}
 
-<input type="button" value="Login">
-<input type="button" value="Create Account">
+@using(Html.BeginForm("Index","AccountCreation",null,FormMethod.Post))
+{
+  <button type="submit">Create Account</button>
+}
+
+

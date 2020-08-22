@@ -4,6 +4,13 @@
 }
 
 <form >
-  Username: <input type="text">
-  Password: <input type="password">
+  
 </form>
+@using(Html.BeginForm("Index","Profile", null, FormMethod.Post))
+{
+  <div class="container">
+    Username: <input type="text">
+    Password: <input type="password">
+    <button type="submit">Login</button>
+  </div>
+}
