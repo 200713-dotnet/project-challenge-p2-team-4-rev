@@ -1,11 +1,15 @@
-﻿@{
+﻿@model Perpective.Client.Models.UserViewModel
+@{
     ViewData["Title"] = "Profile";
     Layout = "_ProfileLayout";
 }
 
+@Model.Name
+@Model.Password
 @using(Html.BeginForm("Index","Chatroom", null, FormMethod.Post))
 {
   <img src="http://www.placecorgi.com/250" alt="placeholder"/>
+  <p>@Model.Categories.ToString()</p>
   <button type="submit">Join Room</button>
   <img src="http://www.placecorgi.com/250" alt="placeholder"/>
   <button type="submit">Join Room</button>

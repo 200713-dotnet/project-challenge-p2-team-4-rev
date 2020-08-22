@@ -18,10 +18,15 @@ namespace Perpective.Client.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(UserViewModel user)
         {
-            return View();
+            return View(user);
         }
+
+        // public IActionResult UserCheck()
+        // {
+          
+        // }
 
         public IActionResult Privacy()
         {
