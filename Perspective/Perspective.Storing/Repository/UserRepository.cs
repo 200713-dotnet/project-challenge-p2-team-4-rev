@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,13 @@ namespace Perspective.Storing
             return temp;
 
         }
+
+        public UserModel CheckPassword(PerspectiveDBContext pc, string username, string password)
+        {
+            var query = pc.User.FirstOrDefault(n => n.Name == username && n.Password == password);
+            return Conversion(pc,query);
+        }
+
         public User GetUser(PerspectiveDBContext pc, string name)
         {
             return pc.User.FirstOrDefault(n => n.Name ==name);
@@ -47,6 +55,14 @@ namespace Perspective.Storing
             }
             return temp;
 
+        }
+        public void Add(PerspectiveDBContext pc, string username,string Password)
+        {
+            User usr = new User();
+            usr.Name = username;
+            usr.Password = Password;
+            pc.User.Add(usr);
+            pc.SaveChanges();
         }
     }
 }

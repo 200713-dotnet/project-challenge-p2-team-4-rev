@@ -41,6 +41,11 @@ namespace Perspective.Storing
             RR.add(pc,roomname,username,content);
             return Ok();
         }
-        
+                [HttpPost]
+        public IActionResult AddUser(string name, string roomname)
+        {
+            RR.AddUser(pc,name,roomname);
+            return Ok();
+        }
     }
 }
