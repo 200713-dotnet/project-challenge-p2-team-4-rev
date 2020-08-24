@@ -8,7 +8,7 @@ namespace Perspective.Service.Models
     public string Name { get; set; }
     public string Description { get; set; }
     public List<RoomModel> Rooms {get; set;}
-    public List<UserModel> WaitList {get; set;}
+    public int WaitList {get; set;}
     public List<string> Topics {get; set;}
 
   }

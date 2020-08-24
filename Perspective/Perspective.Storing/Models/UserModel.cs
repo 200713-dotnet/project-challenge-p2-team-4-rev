@@ -6,7 +6,6 @@ namespace Perspective.Storing
     {
         public string Password{get;set;}
         public List<string> Rooms{get;set;}
-        public List<string> Catagories{get;set;}
         
     }
 }

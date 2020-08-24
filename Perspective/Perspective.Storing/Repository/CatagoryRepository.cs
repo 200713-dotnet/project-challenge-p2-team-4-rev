@@ -18,7 +18,7 @@ namespace Perspective.Storing
             temp.Id = cat.CatagoryId;
             temp.DateModified = cat.DateModified;
             temp.Rooms = RoomRepository.GetCategory(pc,temp.Name);
-            temp.WaitList = RoomRepository.GetWaitList(pc,temp.Name);
+            temp.WaitList = RoomRepository.GetWaitList(pc,temp.Name).Id;
             temp.Topics = getTopics(temp.Name);
             return temp;
             }
