@@ -16,7 +16,6 @@ namespace Perspective.Storing
             temp.Id = room.RoomId;
             temp.DateModified = room.DateModified;
             temp.Messages = MessageRepository.GetRoom(pc,temp.Name);
-            temp.Users = UserRepository.GetUserData(pc,temp.Name);
             return temp;
 
         }

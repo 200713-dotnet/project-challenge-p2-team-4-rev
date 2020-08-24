@@ -18,7 +18,7 @@ namespace Perspective.Storing
         [HttpGet]
         public IActionResult GetAll()
         {
-           return Ok(CatagoryRepository.GetAll());
+           return Ok(CatagoryRepository.GetAll().ToArray());
         }
         [HttpGet("{name}")]
         public IActionResult Get(string name)

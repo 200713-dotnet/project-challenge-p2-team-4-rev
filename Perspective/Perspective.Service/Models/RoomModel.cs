@@ -7,7 +7,6 @@ namespace Perspective.Service.Models
     public int ID {get; set;}
     public string Name {get; set;}
     public List<MessageModel> Messages {get; set;}
-    public List<UserModel> Users {get; set;}
     public string Topic {get; set;}
   }
 }

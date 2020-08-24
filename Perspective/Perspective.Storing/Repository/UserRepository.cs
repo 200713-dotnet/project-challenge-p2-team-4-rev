@@ -15,7 +15,6 @@ namespace Perspective.Storing
             temp.DateModified = user.DateModified;
             temp.Password = user.Password;
             temp.Rooms = RoomRepository.GetUser(pc,temp.Name);
-            temp.Catagories = CatagoryRepository.GetUser(temp.Name);
             return temp;
 
         }
@@ -51,7 +50,6 @@ namespace Perspective.Storing
                 temp.Add(tempModel);
             }
             return temp;
-
         }
         public static void Add(PerspectiveDBContext pc, string username,string Password)
         {

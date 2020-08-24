@@ -6,7 +6,7 @@ namespace Perspective.Storing
     {
         public string Description{get;set;}
         public List<RoomModel> Rooms {get;set;}
-        public RoomModel WaitList {get;set;}
+        public int WaitList {get;set;}
         public List<string> Topics{get;set;}
         
     }
