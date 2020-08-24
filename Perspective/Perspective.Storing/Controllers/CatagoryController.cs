@@ -10,31 +10,31 @@ namespace Perspective.Storing
     public class CatagoryController : ControllerBase 
     {
         private readonly PerspectiveDBContext pc;
+
         public CatagoryController(PerspectiveDBContext _db)
         {
             pc = _db;
         }
-        CatagoryRepository CR = new CatagoryRepository();
         [HttpGet]
         public IActionResult GetAll()
         {
-           return Ok(CR.GetAll(pc));
+           return Ok(CatagoryRepository.GetAll());
         }
         [HttpGet("{name}")]
         public IActionResult Get(string name)
         {
-           return Ok(CR.GetCatagory(pc,name));
+           return Ok(CatagoryRepository.GetCatagory(pc,name));
         }
         [HttpPost]
         public IActionResult Add(string name, string description)
         {
-           CR.Add(pc,name,description);
+           CatagoryRepository.Add(name,description);
            return Ok();
         }
         [HttpPost]
         public IActionResult AddUser(string username,string catagoryname)
         {
-           CR.AddUser(pc,username,catagoryname);
+           CatagoryRepository.AddUser(username,catagoryname);
            return Ok();
         }
         

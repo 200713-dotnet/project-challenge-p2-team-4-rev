@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace Perspective.Storing
 {
-    public class MessageRepository
+    public static class MessageRepository
     {
-        public MessageModel Conversion(PerspectiveDBContext pc, string messagename)
+        public static MessageModel Conversion2(PerspectiveDBContext pc, string messagename)
         {
             Message msg = new Message();
             MessageModel temp = new MessageModel();
@@ -16,13 +16,13 @@ namespace Perspective.Storing
             return temp;
 
         }
-        public List<MessageModel> GetRoom(PerspectiveDBContext pc,string roomname)
+        public static List<MessageModel> GetRoom(PerspectiveDBContext pc,string roomname)
         {
             List<MessageModel> temp = new List<MessageModel>();
             foreach(Message m in pc.Message.ToList().Where(name => name.Name == roomname))
             {
                 MessageModel tempModel = new MessageModel();
-                tempModel = Conversion(pc,m.Name);
+                tempModel = Conversion2(pc,m.Name);
                 temp.Add(tempModel);
             }
             return temp;
