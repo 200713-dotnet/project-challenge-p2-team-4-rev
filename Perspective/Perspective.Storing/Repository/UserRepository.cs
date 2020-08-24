@@ -5,41 +5,38 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Perspective.Storing
 {
-    public class UserRepository
+    public static class UserRepository
     {
-        MessageRepository MR = new MessageRepository();
-        CatagoryRepository CR = new CatagoryRepository();
-        RoomRepository RR = new RoomRepository();
-        public UserModel Conversion(PerspectiveDBContext pc,User user)
+        public static UserModel Conversion4(PerspectiveDBContext pc,User user)
         {
             UserModel temp = new UserModel();
             temp.Name = user.Name;
             temp.Id = user.UserId;
             temp.DateModified = user.DateModified;
             temp.Password = user.Password;
-            temp.Rooms = RR.GetUser(pc,temp.Name);
-            temp.Catagories = CR.GetUser(pc,temp.Name);
+            temp.Rooms = RoomRepository.GetUser(pc,temp.Name);
+            temp.Catagories = CatagoryRepository.GetUser(temp.Name);
             return temp;
 
         }
 
-        public UserModel CheckPassword(PerspectiveDBContext pc, string username, string password)
+        public static UserModel CheckPassword(PerspectiveDBContext pc, string username, string password)
         {
             var query = pc.User.FirstOrDefault(n => n.Name == username && n.Password == password);
-            return Conversion(pc,query);
+            return Conversion4(pc,query);
         }
 
-        public User GetUser(PerspectiveDBContext pc, string name)
+        public static User GetUser(PerspectiveDBContext pc, string name)
         {
             return pc.User.FirstOrDefault(n => n.Name ==name);
         }
-        public User GetUser(PerspectiveDBContext pc, int id)
+        public static User GetUser(PerspectiveDBContext pc, int id)
         {
             return pc.User.FirstOrDefault(n => n.UserId ==id);
         }
-        public List<UserModel> GetUserData(PerspectiveDBContext pc,string roomname)
+        public static List<UserModel> GetUserData(PerspectiveDBContext pc,string roomname)
         {
-            Room room = RR.GetRoom(pc,roomname);
+            Room room = RoomRepository.GetRoom(pc,roomname);
             List<UserModel> temp = new List<UserModel>();
             List<User> tempusr = new List<User>();
             var tempList = pc.UserRoomJunction.Where(id => id.RoomId == room.RoomId).ToList();
@@ -50,13 +47,13 @@ namespace Perspective.Storing
             foreach(User u in tempusr)
             {
                 UserModel tempModel = new UserModel();
-                tempModel = Conversion(pc,u);
+                tempModel = Conversion4(pc,u);
                 temp.Add(tempModel);
             }
             return temp;
 
         }
-        public void Add(PerspectiveDBContext pc, string username,string Password)
+        public static void Add(PerspectiveDBContext pc, string username,string Password)
         {
             User usr = new User();
             usr.Name = username;

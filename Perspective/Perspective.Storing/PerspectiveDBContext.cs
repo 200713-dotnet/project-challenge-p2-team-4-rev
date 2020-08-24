@@ -27,7 +27,7 @@ namespace Perspective.Storing
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=perspectivedb.database.windows.net;database=PerspectiveDB;user id=sqladmin;password=Password1234");
+                optionsBuilder.UseSqlServer("server=perspectivedb.database.windows.net;database=PerspectiveDB;user id=sqladmin;password=Password1234;");
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
