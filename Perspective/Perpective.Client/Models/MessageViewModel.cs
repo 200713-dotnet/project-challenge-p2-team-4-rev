@@ -1,11 +1,10 @@
 using System;
+using Perspective.Storing;
 
 namespace Perpective.Client.Models
 {
     public class MessageViewModel
     {
-        public string RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public string content{get;set;}
     }
 }

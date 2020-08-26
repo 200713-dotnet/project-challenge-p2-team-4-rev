@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Perspective.Service.Models;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Perspective.Service.Controllers
@@ -36,8 +36,8 @@ namespace Perspective.Service.Controllers
       HttpClient client = new HttpClient();
       var response = client.GetAsync("http://localhost:5004/api/catagory/getall").GetAwaiter().GetResult();
       var jsonString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-      CategoryModel[] bsObj = JsonConvert.DeserializeObject<CategoryModel[]>(jsonString);
-      return Ok(bsObj);
+      //CategoryModel[] bsObj = JsonConvert.DeserializeObject<CategoryModel[]>(jsonString);
+      return Ok(jsonString);
     }
 
   }

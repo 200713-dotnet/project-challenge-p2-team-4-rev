@@ -1,16 +1,17 @@
-﻿@{
+﻿@model Perpective.Client.Models.UserViewModel
+@{
     ViewData["Title"] = "Login";
     Layout = "_LoginLayout";
 }
 
-<form >
-  
-</form>
+
 @using(Html.BeginForm("Index","Profile", null, FormMethod.Post))
 {
   <div class="container">
-    Username: <input type="text">
-    Password: <input type="password">
+    Username: <input type="text" name="name" required>
+    @Html.HiddenFor(m => m.Name)
+    Password: <input type="password" name="password" required>
+    @Html.HiddenFor(m => m.Password)
     <button type="submit">Login</button>
   </div>
 }

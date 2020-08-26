@@ -1,11 +1,13 @@
 using System;
+using System.Collections.Generic;
+using Perspective.Storing;
 
 namespace Perpective.Client.Models
 {
     public class RoomViewModel
     {
-        public string RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public List<MessageModel> Messages {get;set;}
+        public List<UserModel> Users {get;set;}
+        public string Topic{get;set;}
     }
 }
