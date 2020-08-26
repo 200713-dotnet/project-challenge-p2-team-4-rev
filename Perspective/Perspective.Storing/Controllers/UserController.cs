@@ -10,25 +10,21 @@ namespace Perspective.Storing
     public class UserController : ControllerBase 
     {
         private readonly PerspectiveDBContext pc;
-        UserRepository UR = new UserRepository();
+        
         public UserController(PerspectiveDBContext _db)
         {
             pc = _db;
         }
-        [HttpGet("{name}")]
-        public IActionResult Get(string name)
+        
+        [HttpGet("{username}")]
+        public IActionResult CheckPassword(string username)
         {
-           return Ok(UR.GetUser(pc,name));
-        }
-        [HttpGet("{username},{password}")]
-        public IActionResult CheckPassword(string username,string password)
-        {
-            return Ok(UR.CheckPassword(pc,username,password));
+            return Ok(UserRepository.CheckUser(pc,username));
         }
         [HttpPost]
-        public IActionResult Add(string name, string password)
+        public IActionResult Add(string name)
         {
-           UR.Add(pc,name,password);
+           UserRepository.Add(pc,name);
            return Ok();
         }
     }

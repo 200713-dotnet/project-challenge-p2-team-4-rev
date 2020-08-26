@@ -8,7 +8,6 @@ namespace Perspective.Service.Models
     public string Name {get; set;}
     private string Password {get; set;}
     List<RoomModel> Rooms {get; set;}
-    List<CategoryModel> Categories {get; set;}
 
   }
 }

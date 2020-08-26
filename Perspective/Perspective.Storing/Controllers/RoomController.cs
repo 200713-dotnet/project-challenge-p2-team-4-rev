@@ -10,41 +10,35 @@ namespace Perspective.Storing
     public class RoomController : ControllerBase 
     {
         private readonly PerspectiveDBContext pc;
-        RoomRepository RR =new RoomRepository();
-        CatagoryRepository CR = new CatagoryRepository();
+
         public RoomController(PerspectiveDBContext _db)
         {
             pc = _db;
         }
-        [HttpGet("{Catagory}")]
-        public IActionResult Get(string catagory)
+        
+        [HttpGet]
+        public IActionResult Get()
         {
             
-            var tempList = RR.GetCategory(pc,catagory);
+            var tempList = RoomRepository.GetRoom(pc,"Movies");
            return Ok(tempList);
         }
         [HttpGet("{roomname}")]
         public IActionResult GetMessages(string roomname)
         {
-            var tempList = RR.GetMessages(pc,roomname);
+            var tempList = RoomRepository.GetMessages(pc,roomname);
             return Ok(tempList);
-        }
-        [HttpGet("{roomname}")]
-        public IActionResult GetTopic(string roomname)
-        {
-            Room rm = RR.GetRoom(pc,roomname);
-            return Ok(CR.GetTopic(pc,rm.Catagory.Name));
         }
         [HttpPost]
         public IActionResult AddMessage(string username,string roomname,string content)
         {
-            RR.add(pc,roomname,username,content);
+            MessageRepository.Add(pc,roomname,username,content);
             return Ok();
         }
-                [HttpPost]
+        [HttpPost]
         public IActionResult AddUser(string name, string roomname)
         {
-            RR.AddUser(pc,name,roomname);
+            RoomRepository.AddUser(pc,name,roomname);
             return Ok();
         }
     }
