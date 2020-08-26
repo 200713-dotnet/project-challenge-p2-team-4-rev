@@ -16,20 +16,15 @@ namespace Perspective.Storing
             pc = _db;
         }
         
-        [HttpGet("{name}")]
-        public IActionResult Get(string name)
+        [HttpGet("{username}")]
+        public IActionResult CheckPassword(string username)
         {
-           return Ok(UserRepository.GetUser(pc,name));
-        }
-        [HttpGet("{username},{password}")]
-        public IActionResult CheckPassword(string username,string password)
-        {
-            return Ok(UserRepository.CheckPassword(pc,username,password));
+            return Ok(UserRepository.CheckUser(pc,username));
         }
         [HttpPost]
-        public IActionResult Add(string name, string password)
+        public IActionResult Add(string name)
         {
-           UserRepository.Add(pc,name,password);
+           UserRepository.Add(pc,name);
            return Ok();
         }
     }

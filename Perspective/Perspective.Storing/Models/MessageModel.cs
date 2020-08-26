@@ -1,7 +1,8 @@
 namespace Perspective.Storing
 {
-    public class MessageModel: AModel
+    public class MessageModel
     {
-        public string content{get;set;}
+        public string Content{get;set;}
+        public string UserName{get;set;}
     }
 }

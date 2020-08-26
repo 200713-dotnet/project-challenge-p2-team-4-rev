@@ -16,11 +16,11 @@ namespace Perspective.Storing
             pc = _db;
         }
         
-        [HttpGet("{Catagory}")]
-        public IActionResult Get(string catagory)
+        [HttpGet]
+        public IActionResult Get()
         {
             
-            var tempList = RoomRepository.GetCategory(pc,catagory);
+            var tempList = RoomRepository.GetRoom(pc,"Movies");
            return Ok(tempList);
         }
         [HttpGet("{roomname}")]
@@ -29,19 +29,13 @@ namespace Perspective.Storing
             var tempList = RoomRepository.GetMessages(pc,roomname);
             return Ok(tempList);
         }
-        [HttpGet("{roomname}")]
-        public IActionResult GetTopic(string roomname)
-        {
-            Room rm = RoomRepository.GetRoom(pc,roomname);
-            return Ok(CatagoryRepository.GetTopic(rm.Catagory.Name));
-        }
         [HttpPost]
         public IActionResult AddMessage(string username,string roomname,string content)
         {
-            RoomRepository.add(pc,roomname,username,content);
+            MessageRepository.Add(pc,roomname,username,content);
             return Ok();
         }
-                [HttpPost]
+        [HttpPost]
         public IActionResult AddUser(string name, string roomname)
         {
             RoomRepository.AddUser(pc,name,roomname);

@@ -11,7 +11,7 @@ create table [User]
 (
 UserId int PRIMARY key,
 [Name] NVARCHAR(50) not null,
-[Password] NVARCHAR(50) not null,
+[Password] NVARCHAR(50),
 DateModified DATETIME not null
 );
 
