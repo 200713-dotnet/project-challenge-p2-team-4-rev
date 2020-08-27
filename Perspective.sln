@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perpective.Client", "Perpective.Client\Perpective.Client.csproj", "{51C50A27-7411-4A38-9097-EB50E22F2376}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perspective.Storing", "Perspective.Storing\Perspective.Storing.csproj", "{213F3D33-13BB-470F-A01D-AB37ECAAEA2C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Perspective", "Perspective", "{27E7728C-F466-45C3-AE25-C4F7EFB0EA05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perpective.Client", "Perspective\Perpective.Client\Perpective.Client.csproj", "{7BE66D34-4171-41EB-A80A-EA617CBB6F13}"
