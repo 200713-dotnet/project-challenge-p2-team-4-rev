@@ -18,11 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.1
       - run: dotnet tool install --global dotnet-sonarscanner --version 4.10.0
-      # - run: | #multiline value
-      #     dotnet sonarscanner begin -o:'wampidu' -k:'wampidu_p1repo' -d:sonar.login='628ad7c708c45f8249f44ca9221ff1be7376ee2e' -d:sonar.host.url='https://sonarcloud.io'
-      #     dotnet build
-      #     dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover --logger trx
-      #     dotnet sonarscanner end -d:sonar.login='628ad7c708c45f8249f44ca9221ff1be7376ee2e'
+      - run: | #multiline value
+          dotnet sonarscanner begin -o:'kyeel1' -k:'thisisakey_123' -d:sonar.login='98c2c6413261969bd53c0d544d33bd75c218c348' -d:sonar.host.url='https://sonarcloud.io'
+          dotnet build
+          dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover --logger trx
+          dotnet sonarscanner end -d:sonar.login='98c2c6413261969bd53c0d544d33bd75c218c348'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
