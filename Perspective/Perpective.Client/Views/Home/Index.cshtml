@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Chatroom";
+    Layout = "_ChatroomLayout";
+}
+@model Perpective.Client.Models.RoomViewModel;
+
+  <label for="chatbox">ChatRoomName</label>
+  <br>
+  <textarea id="chatbox" name="chatbox" rows="4" cols="50">
+
+    @foreach (MessageModel item in ViewBag.room.Messages)
+    {
+        @item.UserName @ViewBag.Space @item.Content
+    }
+  </textarea>
+ <p>@ViewBag.s</p>
+@using(Html.BeginForm("AddMessage","Home", null, FormMethod.Post))
+{
+  @Html.TextBoxFor(m => m.textName);
+  @Html.TextBoxFor(m => m.message);
+  <input type="submit" value="Send">
+}
