@@ -11,8 +11,8 @@ create table [User]
 (
 UserId int PRIMARY key,
 [Name] NVARCHAR(50) not null,
-[Password] NVARCHAR(50),
-DateModified DATETIME not null
+[Password] NVARCHAR(50)
+
 );
 
 create table Room
@@ -32,7 +32,6 @@ UserId int not null,
 RoomId int not null,
 [Name] NVARCHAR(50),
 content NVARCHAR(250) not null,
-DateModified DATETIME not null,
 FOREIGN KEY (RoomId) REFERENCES Room(RoomId),
 FOREIGN KEY (UserId) REFERENCES [User](UserId)
 );

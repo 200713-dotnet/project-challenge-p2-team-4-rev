@@ -1,4 +1,4 @@
-namespace Perspective.Service.Models
+namespace Perpective.Client.Models
 {
   public class MessageModel
     {

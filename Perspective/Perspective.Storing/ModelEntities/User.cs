@@ -15,7 +15,6 @@ namespace Perspective.Storing
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public DateTime DateModified { get; set; }
 
         public virtual ICollection<CatagoryUserJunction> CatagoryUserJunction { get; set; }
         public virtual ICollection<Message> Message { get; set; }

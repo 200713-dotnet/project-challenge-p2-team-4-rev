@@ -28,12 +28,6 @@ namespace Perspective.Storing
             pc.UserRoomJunction.Add(temp);
             pc.SaveChanges();
             }
-            else{
-            UserRepository.Add(pc,UserName);
-            tempUser = UserRepository.GetUser(pc,UserName);
-            pc.UserRoomJunction.Add(temp);
-            pc.SaveChanges();
-            }
             
         }
 
@@ -45,15 +39,17 @@ namespace Perspective.Storing
         {
             return pc.Room.FirstOrDefault(i => i.Name == name);
         }
-        public static List<MessageModel> GetMessages(PerspectiveDBContext pc, string roomname)
+        public static List<MessageModel> GetMessages( string roomname)
         {
-             Room rm = GetRoom(pc,roomname);
-             var query = pc.Message.Where(id => id.RoomId == rm.RoomId).ToList();
+            using(PerspectiveDBContext dbo = new PerspectiveDBContext()){
+             Room rm = GetRoom(dbo,roomname);
+             var query = dbo.Message.Where(id => id.RoomId == rm.RoomId).ToList();
              var tempList = new List<MessageModel>();
              foreach(var m in query){
-             tempList.Add(MessageRepository.Conversion2(pc,m.Name));
+             tempList.Add(MessageRepository.Conversion2(dbo,m.MessageId));
              }
              return tempList;
+        }
         }
     }
 }

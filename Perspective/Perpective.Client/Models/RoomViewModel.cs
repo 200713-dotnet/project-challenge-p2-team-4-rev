@@ -7,5 +7,8 @@ namespace Perpective.Client.Models
         public string RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+
+        public string textName{get;set;}
+        public string message{get;set;}
     }
 }

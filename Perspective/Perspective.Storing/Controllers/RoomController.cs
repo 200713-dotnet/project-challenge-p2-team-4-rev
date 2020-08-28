@@ -20,25 +20,26 @@ namespace Perspective.Storing
         public IActionResult Get()
         {
             
-            var tempList = RoomRepository.GetRoom(pc,"Movies");
-           return Ok(tempList);
+            var tempRoom = RoomRepository.Conversion3(RoomRepository.GetRoom(pc,"Movies"),pc);
+            
+            return Ok(tempRoom);
         }
         [HttpGet("{roomname}")]
-        public IActionResult GetMessages(string roomname)
+        public IActionResult GetMessages(NameModel NM)
         {
-            var tempList = RoomRepository.GetMessages(pc,roomname);
+            var tempList = RoomRepository.GetMessages(NM.Name);
             return Ok(tempList);
         }
         [HttpPost]
-        public IActionResult AddMessage(string username,string roomname,string content)
+        public IActionResult AddMessage(AddMessageModel AMM)
         {
-            MessageRepository.Add(pc,roomname,username,content);
+            MessageRepository.Add(pc,AMM.RoomName,AMM.UserName,AMM.Content);
             return Ok();
         }
         [HttpPost]
-        public IActionResult AddUser(string name, string roomname)
+        public IActionResult AddUser(AddUserModel AUM)
         {
-            RoomRepository.AddUser(pc,name,roomname);
+            RoomRepository.AddUser(pc,AUM.UserName,AUM.roomname);
             return Ok();
         }
     }

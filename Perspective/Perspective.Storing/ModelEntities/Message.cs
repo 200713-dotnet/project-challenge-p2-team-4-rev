@@ -10,7 +10,6 @@ namespace Perspective.Storing
         public int RoomId { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }
-        public DateTime DateModified { get; set; }
 
         public virtual Room Room { get; set; }
         public virtual User User { get; set; }

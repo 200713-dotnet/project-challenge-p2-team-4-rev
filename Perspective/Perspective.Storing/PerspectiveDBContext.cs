@@ -22,14 +22,16 @@ namespace Perspective.Storing
         public virtual DbSet<TopicList> TopicList { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserRoomJunction> UserRoomJunction { get; set; }
-    
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=perspectivedb.database.windows.net;database=PerspectiveDB;user id=sqladmin;password=Password1234;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("server=perspectivedb.database.windows.net;database=PerspectiveDB;user id=sqladmin;password=Password1234");
             }
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Catagory>(entity =>
@@ -50,7 +52,7 @@ namespace Perspective.Storing
             modelBuilder.Entity<CatagoryUserJunction>(entity =>
             {
                 entity.HasKey(e => e.CatagoryUserId)
-                    .HasName("PK__Catagory__0BCD617D94DF3021");
+                    .HasName("PK__Catagory__0BCD617D6A8C2B2B");
 
                 entity.Property(e => e.CatagoryUserId).ValueGeneratedNever();
 
@@ -60,13 +62,13 @@ namespace Perspective.Storing
                     .WithMany(p => p.CatagoryUserJunction)
                     .HasForeignKey(d => d.CatagoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CatagoryU__Catag__66603565");
+                    .HasConstraintName("FK__CatagoryU__Catag__68487DD7");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.CatagoryUserJunction)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CatagoryU__UserI__656C112C");
+                    .HasConstraintName("FK__CatagoryU__UserI__6754599E");
             });
 
             modelBuilder.Entity<Message>(entity =>
@@ -78,21 +80,19 @@ namespace Perspective.Storing
                     .HasColumnName("content")
                     .HasMaxLength(250);
 
-                entity.Property(e => e.DateModified).HasColumnType("datetime");
-
                 entity.Property(e => e.Name).HasMaxLength(50);
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Message)
                     .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Message__RoomId__74AE54BC");
+                    .HasConstraintName("FK__Message__RoomId__6383C8BA");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Message)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Message__UserId__75A278F5");
+                    .HasConstraintName("FK__Message__UserId__6477ECF3");
             });
 
             modelBuilder.Entity<Room>(entity =>
@@ -128,28 +128,24 @@ namespace Perspective.Storing
                     .WithMany(p => p.TopicList)
                     .HasForeignKey(d => d.CatagoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__TopicList__Catag__6E01572D");
+                    .HasConstraintName("FK__TopicList__Catag__6EF57B66");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.UserId).ValueGeneratedNever();
 
-                entity.Property(e => e.DateModified).HasColumnType("datetime");
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.Password).HasMaxLength(50);
             });
 
             modelBuilder.Entity<UserRoomJunction>(entity =>
             {
                 entity.HasKey(e => e.UserRoomId)
-                    .HasName("PK__UserRoom__152B95B6BCA32974");
+                    .HasName("PK__UserRoom__152B95B60A2F3BD3");
 
                 entity.Property(e => e.UserRoomId).ValueGeneratedNever();
 
@@ -159,13 +155,13 @@ namespace Perspective.Storing
                     .WithMany(p => p.UserRoomJunction)
                     .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserRoomJ__RoomI__71D1E811");
+                    .HasConstraintName("FK__UserRoomJ__RoomI__6C190EBB");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserRoomJunction)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserRoomJ__UserI__70DDC3D8");
+                    .HasConstraintName("FK__UserRoomJ__UserI__6B24EA82");
             });
 
             OnModelCreatingPartial(modelBuilder);

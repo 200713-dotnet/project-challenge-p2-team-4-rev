@@ -28,11 +28,13 @@ namespace Perspective.Storing
         }
         public static void Add(PerspectiveDBContext pc, string username)
         {
+            using(PerspectiveDBContext dbo = new PerspectiveDBContext()){
             User usr = new User();
             usr.Name = username;
             usr.Password = " ";
-            pc.User.Add(usr);
-            pc.SaveChanges();
+            dbo.User.Add(usr);
+            dbo.SaveChanges();
+            }
         }
     }
 }
