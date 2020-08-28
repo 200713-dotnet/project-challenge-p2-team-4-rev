@@ -28,7 +28,7 @@ jobs:
 
   package:
     env:
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     needs: [analyze]
     runs-on: ubuntu-20.04
     steps:
