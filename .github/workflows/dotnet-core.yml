@@ -38,6 +38,14 @@ jobs:
       - run: docker image tag perspective kyeel1/perspective
       - run: docker image push kyeel1/perspective
       - run: docker logout
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Deploy to Azure Web App for Container'
+      uses: azure/webapps-deploy@v2
+      with: 
+       app-name: RevaturePerspective
+       images: kyeel1/perspective
 
 name: cibuild
 
