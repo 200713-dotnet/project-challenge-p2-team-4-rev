@@ -35,14 +35,16 @@ namespace Perspective.Storing
         }
         public static void Add(PerspectiveDBContext pc, string RoomName,string UserName,string content)
         {
-            Room room = RoomRepository.GetRoom(pc,RoomName);
+            using(PerspectiveDBContext dbo = new PerspectiveDBContext()){
+            Room room = RoomRepository.GetRoom(dbo,RoomName);
             Message msg = new Message();
-            msg.Room = room;
+            msg.RoomId = room.RoomId;
             msg.Content = content;
             msg.Name = UserName;
-            msg.User = UserRepository.GetUser(pc,UserName);
-            pc.Message.Add(msg);
-            pc.SaveChanges();
+            msg.UserId = UserRepository.GetUser(pc,UserName).UserId;
+            dbo.Message.Add(msg);
+            dbo.SaveChanges();
+            }
             
             
         }

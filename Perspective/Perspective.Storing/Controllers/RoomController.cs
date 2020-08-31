@@ -25,9 +25,9 @@ namespace Perspective.Storing
             return Ok(tempRoom);
         }
         [HttpGet("{roomname}")]
-        public IActionResult GetMessages(NameModel NM)
+        public IActionResult GetMessages(string roomname)
         {
-            var tempList = RoomRepository.GetMessages(NM.Name);
+            var tempList = RoomRepository.GetMessages(roomname);
             return Ok(tempList);
         }
         [HttpPost]

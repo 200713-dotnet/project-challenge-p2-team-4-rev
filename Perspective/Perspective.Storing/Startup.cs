@@ -46,7 +46,8 @@ namespace Perspective.Storing
             }
 
             //app.UseHttpsRedirection();
-
+            app.UseCors();
+            
             app.UseRouting();
 
             app.UseAuthorization();

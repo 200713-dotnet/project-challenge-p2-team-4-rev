@@ -1,14 +1,18 @@
 <h2>Room Messages</h2>
 <ul class="messages">
-    <li *ngFor="let message of messages">
-    <span class="badge">{{message.id}}</span> {{message.name}}
+    <li *ngFor="let message of Messages">
+    <span class="badge">{{message.userName}}:</span>{{message.content}}
   </li>
 </ul>
+<form (ngSubmit)="send()" #messageForm="ngForm">
 <div>
-    <label>name:
-      <input [(ngModel)]="MessageSend.name" placeholder="name"/>
+    <label>Name:
+      <input name = "userName" [(ngModel)]="MessageSend.userName" placeholder="name"/>
     </label>
-    <label>name:
-        <input [(ngModel)]="MessageSend.Content" placeholder="enter your message here"/>
+    <label>Message:
+        <input name = "content" [(ngModel)]="MessageSend.content" placeholder="enter your message here"/>
       </label>
+      <button type="submit">Submit</button>
   </div>
+</form>
+  <p>{{Alert}}</p>

@@ -43,7 +43,7 @@ namespace Perspective.Service.Controllers
       var httpContent = new StringContent(JsonConvert.SerializeObject(new NameModel(){Name = MM.UserName}), Encoding.UTF8,"application/json");
       var failResponse = Http.PostAsync($"Http://localhost:5004/api/user/Add/",httpContent).GetAwaiter().GetResult();
       var httpContent2 = new StringContent(JsonConvert.SerializeObject(new AddMessageModel(){UserName = MM.UserName, Content = MM.Content,Roomname = "Movies"}), Encoding.UTF8,"application/json");
-      var response = Http.PostAsync($"Http://localhost:504/api/room/AddMessage/",httpContent2).GetAwaiter().GetResult();
+      var response = Http.PostAsync($"Http://localhost:5004/api/room/AddMessage/",httpContent2).GetAwaiter().GetResult();
       return Ok();
       }
     }
